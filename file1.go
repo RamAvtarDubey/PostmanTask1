@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 	"sort"
 	"strconv"
 	"strings"
@@ -12,12 +13,16 @@ import (
 
 func main() {
 
-	// filepath := os.Args[1]
+	if len(os.Args) < 2 {
+		fmt.Println("Please give two arguments, go filename and excel file path")
+		return
+	}
+	filepath := os.Args[1]
 
 	var validatedLists [][]string
 	var invalidLists [][]string
 
-	f, err := excelize.OpenFile("CSdata.xlsx")
+	f, err := excelize.OpenFile(filepath)
 	if err != nil {
 		fmt.Println("Error opening file, Please make sure you have the currect filepaths")
 		return
